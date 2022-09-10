@@ -6,6 +6,7 @@ namespace MoodAnalyzerTestCases
 {
     public class MoodAnalyzer
     {
+        
         public string Message;
         public MoodAnalyzer()
         {
@@ -13,7 +14,7 @@ namespace MoodAnalyzerTestCases
         }
         public MoodAnalyzer(string Message)
         {
-            this.Message = Message.ToUpper();
+            this.Message = Message;
         }
 
         public string AnalyseMoodWithconstructor(string Message)
@@ -28,8 +29,25 @@ namespace MoodAnalyzerTestCases
                 return "SAD";
             else return "HAPPY";
         }
-
-
-
+        public string MoodAnalysis()
+        {
+            try
+            {
+                if (Message.ToUpper().Equals("sad"))
+                {
+                    return "sad";
+                }
+                else
+                {
+                    return "Happy";
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return "happy";
+            }
+        }
+     
     }
 }
