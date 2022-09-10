@@ -48,6 +48,33 @@ namespace MoodAnalyzerTestCases
                 return "happy";
             }
         }
-     
+
+        public string InvalidEntry()
+        {
+            try
+            {
+                if (Message.ToLower().Contains("happy"))
+                {
+                    return "happy";
+                }
+                else if (Message.Equals(string.Empty))
+                {
+                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.EMPTY, "Message cann't be Empty");
+                }
+                else
+                {
+                    return "sad";
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("Default Exception: " + ex.Message);
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NULL, "Message cann't be null");
+
+            }
+        }
+
     }
+     
+    
 }

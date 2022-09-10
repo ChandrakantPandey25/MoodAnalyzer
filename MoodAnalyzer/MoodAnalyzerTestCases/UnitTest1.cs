@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using MoodAnalyzerTestCases;
 
 
 namespace MoodAnalyzerTestCases
@@ -53,6 +54,39 @@ namespace MoodAnalyzerTestCases
             var actual = mood.MoodAnalysis();            
             Assert.AreEqual(excepted, actual);
             Console.WriteLine(actual);
+        }
+        [Test]
+        public void GivenNull_ReturnCustomException()
+        {
+            
+            string message = null;
+            string excepted = "Message cann't be null";
+            try
+            {                
+                MoodAnalyzer moodAnalysis = new MoodAnalyzer(message);
+                string actual = moodAnalysis.InvalidEntry();
+            }
+            catch (MoodAnalyzerException ex)
+            {                
+                Assert.AreEqual(excepted, ex.Message);
+            }
+           
+        }
+        [Test]
+        public void GivenEmptyShouldReturnCustomException()
+        {            
+            string message = "";
+            string excepted = "Message cann't be Empty";
+            try
+            {
+                MoodAnalyzer moodAnalysis = new MoodAnalyzer(message);
+                string actual = moodAnalysis.InvalidEntry();
+            }
+            catch (MoodAnalyzerException ex)
+            {               
+                Assert.AreEqual(excepted, ex.Message);
+            }
+
         }
 
     }
